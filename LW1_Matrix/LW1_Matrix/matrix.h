@@ -1,6 +1,6 @@
 #pragma once
 
-class Matrix{
+class Matrix {
 	int _matrixWidth;
 	int _matrixHight;
 	double **_table;
@@ -16,7 +16,7 @@ public:
 	double *operator[](int y);
 	int GetWidth();
 	int GetHight();
-	void RemakeMatrix(const int width, const int hight );
+	void RemakeMatrix(const int width, const int hight);
 	void FillMatrixManually();
 	void Transpose();
 	void PrintMatrix();
