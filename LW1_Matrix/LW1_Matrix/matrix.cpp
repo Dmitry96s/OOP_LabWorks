@@ -131,7 +131,8 @@ void Matrix::Transpose() {
 
 void Matrix::PrintMatrix() {
 	int i, j;	for (i = 0; i < _matrixHight; i++) {
-		for (j = 0; j < _matrixWidth; j++)	std::cout << _table[i][j] << '\t';
+		for (j = 0; j < _matrixWidth; j++)
+	 std::cout << _table[i][j] << '\t';
 		std::cout << std::endl;
 	}
 }
