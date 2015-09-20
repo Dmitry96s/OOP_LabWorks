@@ -13,7 +13,7 @@ int main(){
 	mat1.PrintMatrix();
 	std::cout << std::endl;
 	mat2.PrintMatrix();
-	//system("Pause");
+	// Никаких system("Pause");
 	return 0;
 }
 //2 2 2 2 2 2 
