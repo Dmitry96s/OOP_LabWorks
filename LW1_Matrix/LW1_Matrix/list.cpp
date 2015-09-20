@@ -6,13 +6,13 @@
 
 /**public**/
 
-void ListOfMatrix::SumupMmatrix(int mat1, int mat2)
+void ListOfMatrix::Sumup(int mat1, int mat2)
 {
 	if (matrix[mat1].GetHight() == matrix[mat2].GetHight() && matrix[mat1].GetWidth() == matrix[mat2].GetWidth())
 		matrix[0] = matrix[mat1] + matrix[mat2];
 }
 
-void ListOfMatrix::SubtractMatrix(int mat1, int mat2)
+void ListOfMatrix::Subtract(int mat1, int mat2)
 {
 	if (matrix[mat1].GetHight() == matrix[mat2].GetHight() && matrix[mat1].GetWidth() == matrix[mat2].GetWidth())
 		matrix[0] = matrix[mat1] - matrix[mat2];
@@ -25,7 +25,7 @@ void ListOfMatrix::TransposeMatrix(int mat)
 
 void ListOfMatrix::PrintMatrix(int mat)
 {
-	matrix[mat].PrintMatrix();
+	matrix[mat].Print();
 }
 
 ListOfMatrix::ListOfMatrix(const int len, const int width, const int hight)
@@ -33,7 +33,7 @@ ListOfMatrix::ListOfMatrix(const int len, const int width, const int hight)
 {
 	int i;
 	for (i = 0; i < quantity; i++)
-		matrix[i].RemakeMatrix(width, hight);
+		matrix[i].Recreate(width, hight);
 }
 
 ListOfMatrix::~ListOfMatrix()

@@ -7,12 +7,12 @@
 
 int main() {
 	Matrix mat1(3, 2), mat2;
-	mat1.FillMatrixManually();
+	mat1.FillManually();
 	mat2 = mat1;
 	mat1 = mat1;
-	mat1.PrintMatrix();
+	mat1.Print();
 	std::cout << std::endl;
-	mat2.PrintMatrix();
+	mat2.Print();
 	//Здесь не будет Русского языка system("Pause");
 	return 0;
 }
