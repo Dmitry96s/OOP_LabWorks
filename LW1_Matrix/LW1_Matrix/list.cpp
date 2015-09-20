@@ -1,24 +1,24 @@
 #include "list.h"
 
-void ListOfMatrix::sumupMmatrix(int matrix1, int matrix2)
+void ListOfMatrix::SumupMmatrix(int matrix1, int matrix2)
 {
 	if(list[matrix1].GetHight()==list[matrix2].GetHight() && list[matrix1].GetWidth()==list[matrix2].GetWidth())
 		list[0] = list[matrix1] + list[matrix2];
 	
 }
 
-void ListOfMatrix::subtractMatrix(int matrix1, int matrix2)
+void ListOfMatrix::SubtractMatrix(int matrix1, int matrix2)
 {
 	if(list[matrix1].GetHight()==list[matrix2].GetHight() && list[matrix1].GetWidth()==list[matrix2].GetWidth())
 		list[0] = list[matrix1] - list[matrix2];
 }
 
-void ListOfMatrix::transposeMatrix(int matrix)
+void ListOfMatrix::TransposeMatrix(int matrix)
 {
 	list[matrix].Transpose();
 }
 
-void ListOfMatrix::printMatrix(int matrix)
+void ListOfMatrix::PrintMatrix(int matrix)
 {
 	list[matrix].PrintMatrix();
 }
