@@ -18,6 +18,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="input.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="list.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="matrix.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="list.h" />
+    <ClInclude Include="matrix.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CC6B1956-A708-4DAF-87F1-EDD5D7324B8B}</ProjectGuid>
     <RootNamespace>LW1_Matrix</RootNamespace>
@@ -117,18 +129,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <None Include="C:\Users\Dmitry\Desktop\OOP-LabWork-1\input.dat" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="C:\Users\Dmitry\Desktop\OOP-LabWork-1\list.cpp" />
-    <ClCompile Include="C:\Users\Dmitry\Desktop\OOP-LabWork-1\main.cpp" />
-    <ClCompile Include="C:\Users\Dmitry\Desktop\OOP-LabWork-1\matrix.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="C:\Users\Dmitry\Desktop\OOP-LabWork-1\list.h" />
-    <ClInclude Include="C:\Users\Dmitry\Desktop\OOP-LabWork-1\matrix.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
