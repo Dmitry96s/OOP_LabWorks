@@ -6,24 +6,6 @@
 *  Matrix
 */
 
-/**private**/
-
-void Matrix::NewMatrix() {
-	int i;
-	_table = new double*[_matrixHight];
-	for (i = 0; i < _matrixHight; i++) {
-		_table[i] = new double[_matrixWidth];
-		memset(_table[i], 0, sizeof(double)*_matrixWidth);
-	}
-}
-
-void Matrix::DeleteMatrix() {
-	int i;
-	for (i = 0; i < _matrixHight; i++)
-		delete[] _table[i];
-	delete[] _table;
-}
-
 /**public**/
 
 void Matrix::RemakeMatrix(const int width, const int hight) {
@@ -130,9 +112,9 @@ void Matrix::Transpose() {
 }
 
 void Matrix::PrintMatrix() {
-	int i, j;	
+	int i, j;
 	for (i = 0; i < _matrixHight; i++) {
-		for (j = 0; j < _matrixWidth; j++)	
+		for (j = 0; j < _matrixWidth; j++)
 			std::cout << _table[i][j] << '\t';
 		std::cout << std::endl;
 	}
@@ -140,4 +122,22 @@ void Matrix::PrintMatrix() {
 
 Matrix::~Matrix() {
 	DeleteMatrix();
+}
+
+/**private**/
+
+void Matrix::NewMatrix() {
+	int i;
+	_table = new double*[_matrixHight];
+	for (i = 0; i < _matrixHight; i++) {
+		_table[i] = new double[_matrixWidth];
+		memset(_table[i], 0, sizeof(double)*_matrixWidth);
+	}
+}
+
+void Matrix::DeleteMatrix() {
+	int i;
+	for (i = 0; i < _matrixHight; i++)
+		delete[] _table[i];
+	delete[] _table;
 }
