@@ -130,9 +130,15 @@ void Matrix::Transpose() {
 }
 
 void Matrix::PrintMatrix() {
+<<<<<<< HEAD
 	int i, j;
 	for (i = 0; i < _matrixHight; i++) {
 		for (j = 0; j < _matrixWidth; j++)
+=======
+	int i, j;	
+	for (i = 0; i < _matrixHight; i++) {
+		for (j = 0; j < _matrixWidth; j++)	
+>>>>>>> 4723a9e247b4c8afdbd0ac5d4e9897ec64e068d9
 			std::cout << _table[i][j] << '\t';
 		std::cout << std::endl;
 	}
