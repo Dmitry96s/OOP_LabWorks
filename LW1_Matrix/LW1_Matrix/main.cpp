@@ -24,6 +24,6 @@ int main() {
 //	testString=testString.substr(1);
 //	std::cout << testString.length() << std::endl;
 	
-	PAUSE;
+	_PAUSE_;
 	return 0;
 }

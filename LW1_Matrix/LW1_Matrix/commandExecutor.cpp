@@ -7,7 +7,7 @@ void CommandExecutor::ParseCommand()
 {
 	std::string tempCommand(_command), leftPart;
 	unsigned int strlen(tempCommand.length()), hight, width;
-	int i, varIndex;
+	int i, varIndex, beginNum, endNum;
 	for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '='; i++){
 		
 	}
@@ -15,7 +15,7 @@ void CommandExecutor::ParseCommand()
 	tempCommand = tempCommand.substr(i+1);
 	strlen = tempCommand.length();
 	if(_command[i]=='='){
-		if(IsVarExist(leftPart) > 0){
+		if(IsVarExist(leftPart)){
 			varIndex=IsVarExist(leftPart)-1;
 		}
 		else{
@@ -36,9 +36,15 @@ void CommandExecutor::ParseCommand()
 				}
 			}
 		}
-		//
-		// << Тут надо дописать >>
-		//
+		for (i = 0; i < strlen; i++) {
+			beginNum = i;
+			while (tempCommand[i] >= '0' && tempCommand[i] <= '9' || tempCommand[i] == '.') {
+				
+				i++;
+			}
+			endNum = i;
+			//_var[i].value[1][1]=
+		}
 	}
 }
 
