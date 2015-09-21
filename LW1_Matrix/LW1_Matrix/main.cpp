@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "list.h"
-
+//Test for merging
 #define FILE "input.dat"
 
 int main() {
