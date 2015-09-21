@@ -13,6 +13,7 @@ void CommandExecutor::ParseCommand()
 	}
 	leftPart = tempCommand.substr(0, i);
 	tempCommand = tempCommand.substr(i+1);
+	strlen = tempCommand.length();
 	if(_command[i]=='='){
 		if(IsVarExist(leftPart) > 0){
 			varIndex=IsVarExist(leftPart)-1;

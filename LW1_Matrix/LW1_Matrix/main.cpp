@@ -1,11 +1,11 @@
 ﻿#include <iostream>
 #include <fstream>
+#include <string>
 //#include "list.h"
 #include "commandExecutor.h"
+#include"osDepended.h"
 #define FILE "input.dat"
-#include "string"
 
-#include <string>
 
 int main() {
 	CommandExecutor commandExecutor("input.dat");
@@ -24,6 +24,6 @@ int main() {
 //	testString=testString.substr(1);
 //	std::cout << testString.length() << std::endl;
 	
-	//system("Pause");
+	PAUSE;
 	return 0;
 }
