@@ -20,8 +20,6 @@ int main() {
 //	std::cout << dnum << std::endl;
 //	std::string testString;
 	
-//	testString=commandExecutor._command;
-	
 //	testString=testString.substr(1);
 //	std::cout << testString.length() << std::endl;
 	
