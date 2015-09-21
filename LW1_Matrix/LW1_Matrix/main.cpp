@@ -1,8 +1,9 @@
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 //#include "list.h"
 #include "commandExecutor.h"
 #define FILE "input.dat"
+#include "string"
 
 #include <string>
 
