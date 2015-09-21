@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "list.h"
-//Test for merging RubyScorp
+//Test for merging RubyScorp was successful!
 #define FILE "input.dat"
 
 int main() {
