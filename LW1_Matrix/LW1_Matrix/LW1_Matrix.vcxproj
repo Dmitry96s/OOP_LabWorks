@@ -19,17 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="input.dat" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="list.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="list.h" />
-    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="matrix.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
