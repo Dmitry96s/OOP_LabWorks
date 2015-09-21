@@ -1,6 +1,6 @@
 #pragma once
-#include "matrix.h"
 #include <string>
+#include "matrix.h"
 
 struct Variable{
 	std::string name;
