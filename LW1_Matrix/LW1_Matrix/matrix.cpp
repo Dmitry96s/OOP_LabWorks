@@ -8,7 +8,7 @@
 
 /**public**/
 
-void Matrix::RemakeMatrix(const int width, const int hight) {
+void Matrix::Recreate(const int width, const int hight) {
 	int i;
 	DeleteMatrix();
 	_matrixWidth = width;
@@ -91,7 +91,7 @@ int Matrix::GetHight() {
 	return _matrixHight;
 }
 
-void Matrix::FillMatrixManually() {
+void Matrix::FillManually() {
 	int i, j;
 	for (i = 0; i < _matrixHight; i++)
 		for (j = 0; j < _matrixWidth; j++)
@@ -111,7 +111,7 @@ void Matrix::Transpose() {
 			_table[i][j] = tempMatrix._table[j][i];
 }
 
-void Matrix::PrintMatrix() {
+void Matrix::Print() {
 	int i, j;
 	for (i = 0; i < _matrixHight; i++) {
 		for (j = 0; j < _matrixWidth; j++)

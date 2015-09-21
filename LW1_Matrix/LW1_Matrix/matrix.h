@@ -11,10 +11,10 @@ public:
 	double *operator[](int y);
 	int GetWidth();
 	int GetHight();
-	void RemakeMatrix(const int width, const int hight);
-	void FillMatrixManually();
+	void Recreate(const int width, const int hight);
+	void FillManually();
 	void Transpose();
-	void PrintMatrix();
+	void Print();
 	~Matrix();
 private:
 	int _matrixWidth;

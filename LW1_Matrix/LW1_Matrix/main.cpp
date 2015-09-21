@@ -1,4 +1,4 @@
-//This is Matrix!!!
+﻿//This is Matrix!!!
 #include <iostream>
 #include <fstream>
 #include "list.h"
@@ -7,13 +7,13 @@
 
 int main() {
 	Matrix mat1(3, 2), mat2;
-	mat1.FillMatrixManually();
+	mat1.FillManually();
 	mat2 = mat1;
 	mat1 = mat1;
-	mat1.PrintMatrix();
+	mat1.Print();
 	std::cout << std::endl;
-	mat2.PrintMatrix();
-	//system("Pause");
+	mat2.Print();
+	//Здесь не будет Русского языка system("Pause");
 	return 0;
 }
 //2 2 2 2 2 2
