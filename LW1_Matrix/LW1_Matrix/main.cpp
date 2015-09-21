@@ -13,7 +13,7 @@ int main() {
 	mat1.Print();
 	std::cout << std::endl;
 	mat2.Print();
-	//Здесь не будет Русского языка system("Pause");
+	//system("Pause");
 	return 0;
 }
 //2 2 2 2 2 2
