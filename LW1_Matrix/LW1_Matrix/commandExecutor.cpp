@@ -1,4 +1,3 @@
-//#include <iostream>
 #include <iostream>
 #include <fstream>
 #include "commandExecutor.h"
@@ -7,7 +6,7 @@ void CommandExecutor::ParseCommand()
 {
 	std::string tempCommand(_command), leftPart;
 	unsigned int strlen(tempCommand.length()), hight, width;
-	int i, varIndex, beginNum, endNum;
+	int i, j, varIndex, beginNum, endNum;
 	for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '='; i++){
 		
 	}
@@ -36,14 +35,18 @@ void CommandExecutor::ParseCommand()
 				}
 			}
 		}
-		for (i = 0; i < strlen; i++) {
-			beginNum = i;
-			while (tempCommand[i] >= '0' && tempCommand[i] <= '9' || tempCommand[i] == '.') {
-				
+		_var[varIndex].value.Recreate(width,hight);
+		for(i=0; i<strlen; i++){
+			beginNum=i;
+			endNum=-1;
+			while(tempCommand[i]>='0' && tempCommand[i]<='9' || tempCommand[i]=='.'){
+				endNum=i;
 				i++;
 			}
-			endNum = i;
-			//_var[i].value[1][1]=
+			if(endNum!=-1){
+				cout << _var[varIndex].value[i/width][i%width] << std::endl;
+				i--;
+			}
 		}
 	}
 }
