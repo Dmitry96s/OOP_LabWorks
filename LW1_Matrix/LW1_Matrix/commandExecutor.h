@@ -1,17 +1,30 @@
 #include <fstream>
 #include <string>
-#include "variable.h"
+#include "matrix.h"
+
+struct Variable{
+	std::string name;
+	Matrix value;
+};
+
+struct Command{
+	Variable *result;
+	Variable *opeand[2];
+	std::string optor;
+};
 
 class CommandExecutor
 {
 public:
-	void ParseCommand();
 	void ReadCommand();
+	void ParseCommand();
+	void ExecCommand();
 	int IsVarExist(std::string name);
 	CommandExecutor(const char *fileName);
-	std::string _command;
 private:
 	std::ifstream _file;
-	Variable _var[50];
+	std::string _command;
+	Command _parsedCommand;
 	unsigned int _varCount;
+	Variable _var[50];
 };
