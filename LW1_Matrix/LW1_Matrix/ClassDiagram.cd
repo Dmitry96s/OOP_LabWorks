@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CommandExecutor" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAQBRJEAA=</HashCode>
+      <FileName>commandExecutor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ListOfMatrix" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACACAAAAAAAACABAAAAIgEEAA=</HashCode>
+      <FileName>list.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Matrix" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAgAAAAAAAgAAAAAACAAAAAEgIAACAIAiAEgkAAA=</HashCode>
+      <FileName>matrix.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Variable" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEACAAAAAAAAAAAAA=</HashCode>
+      <FileName>commandExecutor.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Command" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>commandExecutor.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -9,8 +9,8 @@ struct Variable{
 
 struct Command{
 	Variable *result;
-	Variable *opeand[2];
-	std::string optor;
+	Variable *operand[2];
+	std::string action;
 };
 
 class CommandExecutor
@@ -19,9 +19,10 @@ public:
 	void ReadCommand();
 	void ParseCommand();
 	void ExecCommand();
+	Variable *SetVariable(std::string name);
 	int IsVarExist(std::string name);
 	CommandExecutor(const char *fileName);
-private:
+//private:
 	std::ifstream _file;
 	std::string _command;
 	Command _parsedCommand;
