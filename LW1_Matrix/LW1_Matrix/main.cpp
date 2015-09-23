@@ -11,7 +11,7 @@ int main() {
 	commandExecutor.ParseCommand();
 	commandExecutor.ReadCommand();
 	commandExecutor.ParseCommand();
-	
+
 	_PAUSE_;
 	return 0;
 }
