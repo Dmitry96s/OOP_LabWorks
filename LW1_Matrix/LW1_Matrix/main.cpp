@@ -1,10 +1,11 @@
 ﻿#include "commandExecutor.h"
-#include"osDepended.h"
+#include "osDepended.h"
+
 #define FILE "input.dat"
 
 
 int main() {
-	CommandExecutor commandExecutor("input.dat");
+	CommandExecutor commandExecutor(FILE);
 	commandExecutor.ReadCommand();
 	commandExecutor.ParseCommand();
 	commandExecutor.ReadCommand();

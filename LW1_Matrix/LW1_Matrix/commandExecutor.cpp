@@ -1,11 +1,30 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include "commandExecutor.h"
 
 using namespace std;
 
+void CommandExecutor::ReadCommand()
+{
+	getline(_file, _command);
+}
+
 void CommandExecutor::ParseCommand()
+{
+	string tempCommand(_command);
+	int i, strlen(tempCommand.length());
+	
+	for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '='; i++)
+	{
+	
+	}
+//	if(tempCommand[i]=='='){
+//		_parsedCommand.result
+//	}
+}
+
+/*void CommandExecutor::ParseCommand()
 {
 	string tempCommand(_command), leftPart;
 	unsigned int strlen(tempCommand.length()), hight, width;
@@ -50,12 +69,7 @@ void CommandExecutor::ParseCommand()
 			for(j=0; j<width; j++)
 				commandStream >> _var[varIndex].value[i][j];
 	}
-}
-
-void CommandExecutor::ReadCommand()
-{
-	getline(_file, _command);
-}
+}*/
 
 int CommandExecutor::IsVarExist(string name){
 	int i, isExist(0);
