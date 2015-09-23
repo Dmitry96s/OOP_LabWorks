@@ -6,13 +6,12 @@
 
 int main() {
 	CommandExecutor commandExecutor(FILE);
-	commandExecutor.ReadCommand();
-	commandExecutor.ParseCommand();
-	commandExecutor.ReadCommand();
-	commandExecutor.ParseCommand();
-	commandExecutor.ReadCommand();
-	commandExecutor.ParseCommand();
-	
+	for(int i=0; i<6; i++){
+		commandExecutor.ReadCommand();
+		commandExecutor.ParseCommand();
+		commandExecutor.ExecCommand();
+	}
+//	commandExecutor._var[0].value.Print();
 	_PAUSE_;
 	return 0;
 }
