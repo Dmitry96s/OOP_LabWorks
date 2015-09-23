@@ -1,10 +1,13 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "commandExecutor.h"
+
+using namespace std;
 
 void CommandExecutor::ParseCommand()
 {
-	std::string tempCommand(_command), leftPart;
+	string tempCommand(_command), leftPart;
 	unsigned int strlen(tempCommand.length()), hight, width;
 	int i, j, varIndex, beginNum, endNum;
 	for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '='; i++){
@@ -35,19 +38,17 @@ void CommandExecutor::ParseCommand()
 				}
 			}
 		}
+		
+		for(i=0; i<strlen; i++)
+			if(tempCommand[i]=='[' || tempCommand[i]==']')
+				tempCommand[i]=' ';
+		
+		stringstream commandStream(tempCommand);
 		_var[varIndex].value.Recreate(width,hight);
-		for(i=0; i<strlen; i++){
-			beginNum=i;
-			endNum=-1;
-			while(tempCommand[i]>='0' && tempCommand[i]<='9' || tempCommand[i]=='.'){
-				endNum=i;
-				i++;
-			}
-			if(endNum!=-1){
-				cout << _var[varIndex].value[i/width][i%width] << std::endl;
-				i--;
-			}
-		}
+		
+		for(i=0; i<hight; i++)
+			for(j=0; j<width; j++)
+				commandStream >> _var[varIndex].value[i][j];
 	}
 }
 
@@ -56,7 +57,7 @@ void CommandExecutor::ReadCommand()
 	getline(_file, _command);
 }
 
-int CommandExecutor::IsVarExist(std::string name){
+int CommandExecutor::IsVarExist(string name){
 	int i, isExist(0);
 	for(i=0; i<_varCount; i++){
 		if(_var[i].name == name){

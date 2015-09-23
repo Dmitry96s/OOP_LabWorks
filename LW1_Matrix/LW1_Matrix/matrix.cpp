@@ -2,11 +2,7 @@
 #include <cstring>
 #include "matrix.h"
 
-/*  class
-*  Matrix
-*/
-
-/**public**/
+using namespace std;
 
 void Matrix::Recreate(const int width, const int hight) {
 	int i;
@@ -95,7 +91,7 @@ void Matrix::FillManually() {
 	int i, j;
 	for (i = 0; i < _matrixHight; i++)
 		for (j = 0; j < _matrixWidth; j++)
-			std::cin >> _table[i][j];
+			cin >> _table[i][j];
 }
 
 void Matrix::Transpose() {
@@ -115,8 +111,8 @@ void Matrix::Print() {
 	int i, j;
 	for (i = 0; i < _matrixHight; i++) {
 		for (j = 0; j < _matrixWidth; j++)
-			std::cout << _table[i][j] << '\t';
-		std::cout << std::endl;
+			cout << _table[i][j] << '\t';
+		cout << endl;
 	}
 }
 
