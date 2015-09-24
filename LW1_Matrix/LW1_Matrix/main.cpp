@@ -11,7 +11,6 @@ int main() {
 		commandExecutor.ParseCommand();
 		commandExecutor.ExecCommand();
 	}
-//	commandExecutor._var[0].value.Print();
 	_PAUSE_;
 	return 0;
 }
