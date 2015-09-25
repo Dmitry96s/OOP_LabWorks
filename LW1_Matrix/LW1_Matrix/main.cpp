@@ -6,11 +6,7 @@
 
 int main() {
 	CommandExecutor commandExecutor(FILE);
-	for(int i=0; i<6; i++){
-	commandExecutor.ReadCommand();
-	commandExecutor.ParseCommand();
-		commandExecutor.ExecCommand();
-	}
+	commandExecutor.ExecScript();
 	_PAUSE_;
 	return 0;
 }

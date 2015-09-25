@@ -19,6 +19,7 @@ public:
 	void ReadCommand();
 	void ParseCommand();
 	void ExecCommand();
+	void ExecScript();
 	Variable *SetVariable(std::string name);
 	int IsVarExist(std::string name);
 	CommandExecutor(const char *fileName);
