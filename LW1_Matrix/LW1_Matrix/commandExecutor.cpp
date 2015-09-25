@@ -130,7 +130,8 @@ void CommandExecutor::ExecCommand(){
 //		cout << "Variable: " << _parsedCommand.operand[0]->name << endl;
 		_COLOR_;
 		cout << _parsedCommand.operand[0]->name << endl;
-		_DEF_COLOR_;
+		//_DEF_COLOR_;
+	
 		operand1.Print();
 	}else if(action=="transpose"){
 		operand1.Transpose();
