@@ -13,11 +13,13 @@ void CommandExecutor::ReadCommand()
 
 void CommandExecutor::ParseCommand()
 {
-	if(_command[0]=='/' && _command[1]=='/')
+	if(_command[0]=='/' && _command[1]=='/'){
+		_parsedCommand.action="//";
 		return;
+	}
 	string tempCommand(_command);
 	int i, j, strlen(tempCommand.length());
-	for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '='; i++)
+	for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '=' && i<strlen; i++)
 	{
 	
 	}
@@ -27,7 +29,6 @@ void CommandExecutor::ParseCommand()
 		strlen=tempCommand.length();
 		if(tempCommand[0]=='['){
 			int width, hight;
-			_parsedCommand.action='=';
 			stringstream commandStream;
 			hight=-1;
 			for(i=0; i<strlen; i++){
@@ -52,15 +53,23 @@ void CommandExecutor::ParseCommand()
 					commandStream >> _parsedCommand.result->value[i][j];
 		}
 		else{
-			for(i=0; tempCommand[i]!='+' && tempCommand[i]!='-'; i++){
+			for(i=0; tempCommand[i]!='+' && tempCommand[i]!='-' && i<strlen; i++){
 			
 			}
-			if(tempCommand[i]!='+')
+			if(tempCommand[i]=='+'){
 				_parsedCommand.action='+';
-			else
+				_parsedCommand.operand[0]=SetVariable(tempCommand.substr(0,i));
+				_parsedCommand.operand[1]=SetVariable(tempCommand.substr(i+1));
+			}
+			else if(tempCommand[i]=='-'){
 				_parsedCommand.action='-';
-			_parsedCommand.operand[0]=SetVariable(tempCommand.substr(0,i));
-			_parsedCommand.operand[1]=SetVariable(tempCommand.substr(i+1));
+				_parsedCommand.operand[0]=SetVariable(tempCommand.substr(0,i));
+				_parsedCommand.operand[1]=SetVariable(tempCommand.substr(i+1));
+			}
+			else if(i==strlen){
+				_parsedCommand.action='=';
+				_parsedCommand.operand[0]=SetVariable(tempCommand);
+			}
 		}
 	}
 	else{
@@ -69,65 +78,19 @@ void CommandExecutor::ParseCommand()
 	}
 }
 
-/*void CommandExecutor::ParseCommand()
-{
-	string tempCommand(_command), leftPart;
-	unsigned int strlen(tempCommand.length()), hight, width;
-	int i, j, varIndex, beginNum, endNum;
-	for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '='; i++){
-		
-	}
-	leftPart = tempCommand.substr(0, i);
-	tempCommand = tempCommand.substr(i+1);
-	strlen = tempCommand.length();
-	if(_command[i]=='='){
-		if(IsVarExist(leftPart)){
-			varIndex=IsVarExist(leftPart)-1;
-		}
-		else{
-			varIndex=_varCount;
-			_var[varIndex].name=leftPart;
-			_varCount++;
-		}
-		hight=-1;
-		for(i=0; i<strlen; i++){
-			if(tempCommand[i]=='['){
-				hight++;
-				if(hight==1){
-					width=1;
-					for(i; tempCommand[i]!=']'; i++){
-						if(tempCommand[i]==' ')
-							width++;
-					}
-				}
-			}
-		}
-		
-		for(i=0; i<strlen; i++)
-			if(tempCommand[i]=='[' || tempCommand[i]==']')
-				tempCommand[i]=' ';
-		
-		stringstream commandStream(tempCommand);
-		_var[varIndex].value.Recreate(width,hight);
-		
-		for(i=0; i<hight; i++)
-			for(j=0; j<width; j++)
-				commandStream >> _var[varIndex].value[i][j];
-	}
-}*/
-
 void CommandExecutor::ExecCommand(){
 	const string &action=_parsedCommand.action;
 	Matrix
 		&result=_parsedCommand.result->value,
 		&operand1=_parsedCommand.operand[0]->value,
 		&operand2=_parsedCommand.operand[1]->value;
-	if(action=="+"){
+	if(action=="="){
+		result=operand1;
+	}else if(action=="+"){
 		result=operand1+operand2;
 	}else if(action=="-"){
 		result=operand1-operand2;
 	}else if(action=="print"){
-//		cout << "Variable: " << _parsedCommand.operand[0]->name << endl;
 		_COLOR_;
 		cout << _parsedCommand.operand[0]->name << endl;
 		//_DEF_COLOR_;
@@ -135,6 +98,16 @@ void CommandExecutor::ExecCommand(){
 		operand1.Print();
 	}else if(action=="transpose"){
 		operand1.Transpose();
+	}
+}
+
+void CommandExecutor::ExecScript(){
+	//cout << _file.size() << endl;
+	while(!_file.eof()){
+	//for(int i=0; i<2055; i++){
+		ReadCommand();
+		ParseCommand();
+		ExecCommand();
 	}
 }
 
