@@ -102,9 +102,10 @@ void CommandExecutor::ExecCommand(){
 
 void CommandExecutor::ExecScript(){
 	//cout << _file.size() << endl;
-	while(!_file.eof()){
-	//for(int i=0; i<2055; i++){
-		ReadCommand();
+	while(getline(_file, _command)){
+	//while(!_file.eof()){
+//	for(int i=0; i<7; i++){
+//		ReadCommand();
 		ParseCommand();
 		ExecCommand();
 	}
