@@ -93,7 +93,7 @@ void CommandExecutor::ExecCommand(){
 	}else if(action=="print"){
 		_COLOR_;
 		cout << _parsedCommand.operand[0]->name << endl;
-		//_DEF_COLOR_;
+		_DEF_COLOR_;
 	
 		operand1.Print();
 	}else if(action=="transpose"){
