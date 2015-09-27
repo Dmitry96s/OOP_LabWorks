@@ -93,7 +93,7 @@ void CommandExecutor::ExecCommand(){
 	}else if(action=="print"){
 		_COLOR_;
 		cout << _parsedCommand.operand[0]->name << endl;
-		//_DEF_COLOR_;
+		_DEF_COLOR_;
 	
 		operand1.Print();
 	}else if(action=="transpose"){
@@ -102,10 +102,10 @@ void CommandExecutor::ExecCommand(){
 }
 
 void CommandExecutor::ExecScript(){
-	//cout << _file.size() << endl;
 	while(!_file.eof()){
-	//for(int i=0; i<7; i++){
 		ReadCommand();
+		if(_command.length()==0)
+			continue;
 		ParseCommand();
 		ExecCommand();
 	}
