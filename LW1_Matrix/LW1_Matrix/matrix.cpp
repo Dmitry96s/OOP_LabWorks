@@ -59,12 +59,14 @@ Matrix &Matrix::operator=(const Matrix &matrix) {
 		_matrixWidth = matrix._matrixWidth;
 		_matrixHight = matrix._matrixHight;
 		_table = new double*[_matrixHight];
+		for (int i = 0; i < _matrixHight; i++)
+			_table[i] = new double[_matrixWidth];
 	}
+//	for (int i = 0; i < _matrixHight; i++)
+//		for (int j = 0; j < _matrixWidth; j++)
+//			_table[i][j] = matrix._table[i][j];
 	for (int i = 0; i < _matrixHight; i++)
-		_table[i] = new double[_matrixWidth];
-	for (int i = 0; i < _matrixHight; i++)
-		for (int j = 0; j < _matrixWidth; j++)
-			_table[i][j] = matrix._table[i][j];
+		memcpy(_table[i],matrix._table[i],_matrixWidth*sizeof(double));
 	return *this;
 }
 
