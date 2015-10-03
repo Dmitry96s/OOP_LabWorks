@@ -1,33 +1,22 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <cstring>
 #include "commandExecutor.h"
 #include "osDepended.h"
 
 using namespace std;
 
 CommandExecutor::CommandExecutor()
-:_varCount(0), _maxVarCount(50)
+:_varCount(0)
 {
-	_var=new Variable[_maxVarCount];
-}
 
-CommandExecutor::CommandExecutor(const int maxVarCount)
-:_varCount(0), _maxVarCount(maxVarCount)
-{
-	_var=new Variable[_maxVarCount];
 }
 
 CommandExecutor::CommandExecutor(const char *fileName)
-:_file(fileName), _varCount(0), _maxVarCount(50)
+:_file(fileName), _varCount(0)
 {
-	_var=new Variable[_maxVarCount];
-}
 
-CommandExecutor::CommandExecutor(const char *fileName, const int maxVarCount)
-:_file(fileName), _varCount(0), _maxVarCount(maxVarCount)
-{
-	_var=new Variable[_maxVarCount];
 }
 
 void CommandExecutor::OpenFile(const char *fileName){
@@ -138,12 +127,25 @@ void CommandExecutor::ExecScript(){
 		}
 }
 
+void CommandExecutor::AddVar(){
+	Variable *tempVar;
+	tempVar=new Variable[_varCount+1];
+	if(_varCount>0){
+		for(int i=0; i<_varCount; i++)
+			tempVar[i]=_var[i];
+		delete[] _var;
+	}
+	_varCount++;
+	_var=tempVar;
+}
+
 Variable *CommandExecutor::SetVariable(const string &name){
 	int varIndex(WhereIsVar(name));
 	if(varIndex==-1){
-		varIndex=_varCount;
+		AddVar();
+		varIndex=_varCount-1;
 		_var[varIndex].name=name;
-		_varCount++;
+//		_varCount++;
 	}
 	return &_var[varIndex];
 }

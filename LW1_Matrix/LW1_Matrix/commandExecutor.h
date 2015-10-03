@@ -16,14 +16,13 @@ struct Command{
 class CommandExecutor{
 public:
 	CommandExecutor();
-	CommandExecutor(const int maxVarCount);
 	CommandExecutor(const char *fileName);
-	CommandExecutor(const char *fileName, const int maxVarCount);
 	void OpenFile(const char *fileName);
 	void ReadCommand();
 	void ParseCommand();
 	void ExecCommand();
 	void ExecScript();
+	void AddVar();
 	Variable *SetVariable(const std::string &name);
 	int WhereIsVar(const std::string &name);
 	~CommandExecutor();
@@ -32,6 +31,5 @@ private:
 	std::string _command;
 	Command _parsedCommand;
 	unsigned int _varCount;
-	const unsigned int _maxVarCount;
 	Variable *_var;
 };

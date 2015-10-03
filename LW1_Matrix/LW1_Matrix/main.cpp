@@ -1,4 +1,5 @@
-﻿#include "commandExecutor.h"
+//#include <iostream>
+#include "commandExecutor.h"
 #include "osDepended.h"
 
 int main(int argc, char* argv[]) {
