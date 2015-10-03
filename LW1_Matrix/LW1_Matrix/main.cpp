@@ -1,11 +1,13 @@
 ﻿#include "commandExecutor.h"
 #include "osDepended.h"
 
-#define FILE "input.dat"
-// Как сказал один человек: "Дефайн - это плохо"
-
-int main() {
-	CommandExecutor commandExecutor(FILE);
+int main(int argc, char* argv[]) {
+	const char *FILE_NAME("input.dat");
+	CommandExecutor commandExecutor;
+	if(argc > 1)
+		commandExecutor.OpenFile(argv[1]);
+	else
+		commandExecutor.OpenFile(FILE_NAME);
 	commandExecutor.ExecScript();
 	_PAUSE_;
 	return 0;

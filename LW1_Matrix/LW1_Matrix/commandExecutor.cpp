@@ -6,13 +6,41 @@
 
 using namespace std;
 
-void CommandExecutor::ReadCommand()
+CommandExecutor::CommandExecutor()
+:_varCount(0), _maxVarCount(50)
 {
+	_var=new Variable[_maxVarCount];
+}
+
+CommandExecutor::CommandExecutor(const int maxVarCount)
+:_varCount(0), _maxVarCount(maxVarCount)
+{
+	_var=new Variable[_maxVarCount];
+}
+
+CommandExecutor::CommandExecutor(const char *fileName)
+:_file(fileName), _varCount(0), _maxVarCount(50)
+{
+	_var=new Variable[_maxVarCount];
+}
+
+CommandExecutor::CommandExecutor(const char *fileName, const int maxVarCount)
+:_file(fileName), _varCount(0), _maxVarCount(maxVarCount)
+{
+	_var=new Variable[_maxVarCount];
+}
+
+void CommandExecutor::OpenFile(const char *fileName){
+	if(!_file)
+		_file.close();
+	_file.open(fileName);
+}
+
+void CommandExecutor::ReadCommand(){
 	getline(_file, _command);
 }
 
-void CommandExecutor::ParseCommand()
-{
+void CommandExecutor::ParseCommand(){
 	if(_command[0]=='/' && _command[1]=='/'){
 		_parsedCommand.action="//";
 		return;
@@ -93,7 +121,6 @@ void CommandExecutor::ExecCommand(){
 		_COLOR_;
 		cout << _parsedCommand.operand[0]->name << endl;
 		_DEF_COLOR_;
-	
 		operand1.Print();
 	}else if(action=="transpose"){
 		operand1.Transpose();
@@ -101,41 +128,37 @@ void CommandExecutor::ExecCommand(){
 }
 
 void CommandExecutor::ExecScript(){
-	while(!_file.eof()){
-		ReadCommand();
-		if(_command.length()==0)
-			continue;
-		ParseCommand();
-		ExecCommand();
-	}
+	if(_file)
+		while(!_file.eof()){
+			ReadCommand();
+			if(_command.length()==0)
+				continue;
+			ParseCommand();
+			ExecCommand();
+		}
 }
 
-Variable *CommandExecutor::SetVariable(string name){
-	int varIndex;
-	if(IsVarExist(name)){
-			varIndex=IsVarExist(name)-1;
-		}
-		else{
-			varIndex=_varCount;
-			_var[varIndex].name=name;
-			_varCount++;
-		}
+Variable *CommandExecutor::SetVariable(const string &name){
+	int varIndex(WhereIsVar(name));
+	if(varIndex==-1){
+		varIndex=_varCount;
+		_var[varIndex].name=name;
+		_varCount++;
+	}
 	return &_var[varIndex];
 }
 
-int CommandExecutor::IsVarExist(string name){  //Какой нахуй IsVarExist????
-	int isExist(0);
+int CommandExecutor::WhereIsVar(const string &name){
+	int varIndex(-1);
 	for(int i=0; i<_varCount; i++){
 		if(_var[i].name == name){
-			isExist=i+1;  // Че зе еблатня???
+			varIndex=i;
 			break;
 		}
 	}
-	return isExist;
+	return varIndex;
 }
 
-CommandExecutor::CommandExecutor(const char *fileName)
-:_file(fileName), _varCount(0)
-{
-
+CommandExecutor::~CommandExecutor(){
+	
 }

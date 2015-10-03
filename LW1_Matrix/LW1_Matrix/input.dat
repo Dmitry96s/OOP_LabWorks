@@ -6,3 +6,4 @@ transpose var1
 not_var1=var1
 var1=var1+var1
 print var1
+print not_var1

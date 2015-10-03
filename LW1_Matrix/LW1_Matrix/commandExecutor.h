@@ -13,20 +13,25 @@ struct Command{
 	std::string action;
 };
 
-class CommandExecutor
-{
+class CommandExecutor{
 public:
+	CommandExecutor();
+	CommandExecutor(const int maxVarCount);
+	CommandExecutor(const char *fileName);
+	CommandExecutor(const char *fileName, const int maxVarCount);
+	void OpenFile(const char *fileName);
 	void ReadCommand();
 	void ParseCommand();
 	void ExecCommand();
 	void ExecScript();
-	Variable *SetVariable(std::string name);
-	int IsVarExist(std::string name);
-	CommandExecutor(const char *fileName);
+	Variable *SetVariable(const std::string &name);
+	int WhereIsVar(const std::string &name);
+	~CommandExecutor();
 private:
 	std::ifstream _file;
 	std::string _command;
 	Command _parsedCommand;
 	unsigned int _varCount;
-	Variable _var[50];
+	const unsigned int _maxVarCount;
+	Variable *_var;
 };
