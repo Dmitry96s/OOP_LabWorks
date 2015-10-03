@@ -18,20 +18,19 @@ void CommandExecutor::ParseCommand()
 		return;
 	}
 	string tempCommand(_command);
-	int i, j, strlen(tempCommand.length());
-	for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '=' && i<strlen; i++)
+	int i, j;  // И разберись наконец со счетчикамми!!!
+	for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '=' && i<tempCommand.length(); i++)
 	{
 	
 	}
 	if(tempCommand[i]=='='){
 		_parsedCommand.result=SetVariable(tempCommand.substr(0,i));
 		tempCommand=tempCommand.substr(i+1);
-		strlen=tempCommand.length();
 		if(tempCommand[0]=='['){
 			int width, hight;
 			stringstream commandStream;
 			hight=-1;
-			for(i=0; i<strlen; i++){
+			for(i=0; i<tempCommand.length(); i++){
 				if(tempCommand[i]=='['){
 					hight++;
 					if(hight==1){
@@ -44,7 +43,7 @@ void CommandExecutor::ParseCommand()
 				}
 			}
 			_parsedCommand.result->value.Recreate(width,hight);
-			for(i=0; i<strlen; i++)
+			for(i=0; i<tempCommand.length(); i++)
 				if(tempCommand[i]=='[' || tempCommand[i]==']')
 					tempCommand[i]=' ';
 			commandStream << tempCommand;
@@ -53,7 +52,7 @@ void CommandExecutor::ParseCommand()
 					commandStream >> _parsedCommand.result->value[i][j];
 		}
 		else{
-			for(i=0; tempCommand[i]!='+' && tempCommand[i]!='-' && i<strlen; i++){
+			for(i=0; tempCommand[i]!='+' && tempCommand[i]!='-' && i<tempCommand.length(); i++){
 			
 			}
 			if(tempCommand[i]=='+'){
@@ -66,7 +65,7 @@ void CommandExecutor::ParseCommand()
 				_parsedCommand.operand[0]=SetVariable(tempCommand.substr(0,i));
 				_parsedCommand.operand[1]=SetVariable(tempCommand.substr(i+1));
 			}
-			else if(i==strlen){
+			else if(i==tempCommand.length()){
 				_parsedCommand.action='=';
 				_parsedCommand.operand[0]=SetVariable(tempCommand);
 			}
@@ -124,11 +123,11 @@ Variable *CommandExecutor::SetVariable(string name){
 	return &_var[varIndex];
 }
 
-int CommandExecutor::IsVarExist(string name){
-	int i, isExist(0);
-	for(i=0; i<_varCount; i++){
+int CommandExecutor::IsVarExist(string name){  //Какой нахуй IsVarExist????
+	int isExist(0);
+	for(int i=0; i<_varCount; i++){
 		if(_var[i].name == name){
-			isExist=i+1;
+			isExist=i+1;  // Че зе еблатня???
 			break;
 		}
 	}
