@@ -12,7 +12,7 @@ public:
 	int GetWidth();
 	int GetHight();
 	void Recreate(const int width, const int hight);
-//	void FillManually();
+	//	void FillManually();
 	void Transpose();
 	void Print();
 	~Matrix();

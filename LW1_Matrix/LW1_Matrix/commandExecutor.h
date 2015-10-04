@@ -2,18 +2,18 @@
 #include <string>
 #include "matrix.h"
 
-struct Variable{
+struct Variable {
 	std::string name;
 	Matrix value;
 };
 
-struct Command{
+struct Command {
 	Variable *result;
 	Variable *operand[2];
 	std::string action;
 };
 
-class CommandExecutor{
+class CommandExecutor {
 public:
 	CommandExecutor();
 	CommandExecutor(const char *fileName);
