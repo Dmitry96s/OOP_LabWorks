@@ -7,9 +7,9 @@ struct Variable {
 	Matrix value;
 };
 
-struct Command {
-	Variable *result;
+struct Command{
 	Variable *operand[2];
+    Variable *result;
 	std::string action;
 };
 
@@ -17,19 +17,20 @@ class CommandExecutor {
 public:
 	CommandExecutor();
 	CommandExecutor(const char *fileName);
-	void OpenFile(const char *fileName);
-	void ReadCommand();
-	void ParseCommand();
-	void ExecCommand();
 	void ExecScript();
-	void AddVar();
-	Variable *SetVariable(const std::string &name);
-	int WhereIsVar(const std::string &name);
+    void OpenFile(const char *fileName);
 	~CommandExecutor();
 private:
+    Command _parsedCommand;
 	std::ifstream _file;
 	std::string _command;
-	Command _parsedCommand;
 	unsigned int _varCount;
 	Variable *_var;
+
+    int _WhereIsVar(const std::string &name) const;
+    Variable *_SetVariable(const std::string &name);
+    void _AddVar();
+    void _ExecCommand() const;
+    void _ParseCommand();
+    void _ReadCommand();
 };
