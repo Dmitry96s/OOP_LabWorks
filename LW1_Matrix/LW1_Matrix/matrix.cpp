@@ -8,25 +8,25 @@ using namespace std;
  * public
  */
 
-Matrix::Matrix() {
-	_matrixWidth = 1;
-	_matrixHight = 1;
+Matrix::Matrix()
+    :_matrixWidth(1), _matrixHight(1)
+{
     _NewMatrix();
 }
 
-Matrix::Matrix(const Matrix &matrix) {
-	_matrixWidth = matrix._matrixWidth;
-	_matrixHight = matrix._matrixHight;
+Matrix::Matrix(const Matrix &matrix)
+    :_matrixWidth(matrix._matrixWidth), _matrixHight(matrix._matrixHight)
+{
     _NewMatrix();
     for (int i = 0; i < _matrixHight; i++){
         for (int j = 0; j < _matrixWidth; j++){
-			_table[i][j] = matrix._table[i][j];
-}
+            _table[i][j] = matrix._table[i][j];
+        }
     }
 }
 
 Matrix::Matrix(const int width, const int hight)
-	:_matrixWidth(width), _matrixHight(hight)
+    :_matrixWidth(width), _matrixHight(hight)
 {
     _NewMatrix();
 }
@@ -36,21 +36,21 @@ double *Matrix::operator[](int y) {
 }
 
 Matrix &Matrix::operator=(const Matrix &matrix) {
-	if (this == &matrix)
-		return *this;
-	if (_matrixWidth != matrix._matrixWidth || _matrixHight != matrix._matrixHight) {
+    if (this == &matrix)
+        return *this;
+    if (_matrixWidth != matrix._matrixWidth || _matrixHight != matrix._matrixHight) {
         _DeleteMatrix();
-		_matrixWidth = matrix._matrixWidth;
-		_matrixHight = matrix._matrixHight;
-		_table = new double*[_matrixHight];
+        _matrixWidth = matrix._matrixWidth;
+        _matrixHight = matrix._matrixHight;
+        _table = new double*[_matrixHight];
         for (int i = 0; i < _matrixHight; i++){
-			_table[i] = new double[_matrixWidth];
-	}
+            _table[i] = new double[_matrixWidth];
+        }
     }
     for (int i = 0; i < _matrixHight; i++){
         memcpy(_table[i],matrix._table[i],_matrixWidth*sizeof(double));
     }
-	return *this;
+    return *this;
 }
 
 Matrix Matrix::operator-(const Matrix &matrix) const{
@@ -72,11 +72,11 @@ Matrix Matrix::operator+(const Matrix &matrix) const{
 }
 
 int Matrix::GetWidth() const{
-	return _matrixWidth;
+    return _matrixWidth;
 }
 
 int Matrix::GetHight() const{
-	return _matrixHight;
+    return _matrixHight;
 }
 
 void Matrix::Print() const{
@@ -96,15 +96,15 @@ void Matrix::Recreate(const int width, const int hight) {
 }
 
 void Matrix::Transpose() {
-	Matrix tempMatrix(*this);
+    Matrix tempMatrix(*this);
     _DeleteMatrix();
     swap(_matrixWidth, _matrixHight);
     _NewMatrix();
     for (int i = 0; i < _matrixHight; i++){
         for (int j = 0; j < _matrixWidth; j++){
-			_table[i][j] = tempMatrix._table[j][i];
-}
-	}
+            _table[i][j] = tempMatrix._table[j][i];
+        }
+    }
 }
 
 Matrix::~Matrix() {
@@ -123,9 +123,9 @@ void Matrix::_DeleteMatrix() {
 }
 
 void Matrix::_NewMatrix() {
-	_table = new double*[_matrixHight];
+    _table = new double*[_matrixHight];
     for (int i = 0; i < _matrixHight; i++) {
-		_table[i] = new double[_matrixWidth];
-		memset(_table[i], 0, sizeof(double)*_matrixWidth);
-	}
+        _table[i] = new double[_matrixWidth];
+        memset(_table[i], 0, sizeof(double)*_matrixWidth);
+    }
 }
