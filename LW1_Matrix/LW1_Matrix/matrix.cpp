@@ -8,15 +8,15 @@ using namespace std;
  * public
  */
 
-Matrix::Matrix() {
-    _matrixWidth = 1;
-    _matrixHight = 1;
+Matrix::Matrix()
+    :_matrixWidth(1), _matrixHight(1)
+{
     _NewMatrix();
 }
 
-Matrix::Matrix(const Matrix &matrix) {
-    _matrixWidth = matrix._matrixWidth;
-    _matrixHight = matrix._matrixHight;
+Matrix::Matrix(const Matrix &matrix)
+    :_matrixWidth(matrix._matrixWidth), _matrixHight(matrix._matrixHight)
+{
     _NewMatrix();
     for (int i = 0; i < _matrixHight; i++){
         for (int j = 0; j < _matrixWidth; j++){
