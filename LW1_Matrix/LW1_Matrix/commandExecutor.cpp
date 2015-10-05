@@ -80,33 +80,54 @@ void CommandExecutor::_AddVar(){
     _var=tempVar;
 }
 
-void CommandExecutor::_ExecCommand() const{
-    const string &action=_parsedCommand.action;
+void CommandExecutor::_ExecCommand(){
+    const int &action=_parsedCommand.action;
     Matrix
         &result=_parsedCommand.result->value,
         &operand1=_parsedCommand.operand[0]->value,
         &operand2=_parsedCommand.operand[1]->value;
-    if(action=="="){
+//    cout << _parsedCommand.operand[0]->value[0][0] << endl;
+    switch(action){
+    case _parsedCommand.SET:
         result=operand1;
-    }else if(action=="+"){
+    break;
+    case _parsedCommand.ADDITION:
         result=operand1+operand2;
-    }else if(action=="-"){
+    break;
+    case _parsedCommand.SUBTRACTION:
         result=operand1-operand2;
-    }else if(action=="print"){
+    break;
+    case _parsedCommand.TRANSPOSE:
+        operand1.Transpose();
+    break;
+    case _parsedCommand.PRINT:
         _COLOR_;
         cout << _parsedCommand.operand[0]->name << endl;
         _DEF_COLOR_;
         operand1.Print();
-    }else if(action=="transpose"){
-        operand1.Transpose();
+    break;
     }
+//    if(action=="="){
+//        result=operand1;
+//    }else if(action=="+"){
+//        result=operand1+operand2;
+//    }else if(action=="-"){
+//        result=operand1-operand2;
+//    }else if(action=="print"){
+//        _COLOR_;
+//        cout << _parsedCommand.operand[0]->name << endl;
+//        _DEF_COLOR_;
+//        operand1.Print();
+//    }else if(action=="transpose"){
+//        operand1.Transpose();
+//    }
 }
 
 void CommandExecutor::_ParseCommand(){
-    if(_command[0]=='/' && _command[1]=='/'){
-        _parsedCommand.action="//";
-		return;
-	}
+//    if(_command[0]=='/' && _command[1]=='/'){
+//        _parsedCommand.action="//";
+//		return;
+//	}
 	string tempCommand(_command);
     int i, j;
     for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '=' && i<tempCommand.length(); i++){
@@ -129,8 +150,8 @@ void CommandExecutor::_ParseCommand(){
 								width++;
 						}
 					}
-				}
-			}
+                }
+            }
             _parsedCommand.result->value.Recreate(width,hight);
             for(i=0; i<tempCommand.length(); i++){
                 if(tempCommand[i]=='[' || tempCommand[i]==']')
@@ -140,7 +161,8 @@ void CommandExecutor::_ParseCommand(){
             for(i=0; i<hight; i++){
                 for(j=0; j<width; j++){
 					commandStream >> _parsedCommand.result->value[i][j];
-		}
+					cout << _parsedCommand.result->value[i][j] << endl;
+		        }
             }
         }
         else{
@@ -148,23 +170,27 @@ void CommandExecutor::_ParseCommand(){
                 
 			}
             if(tempCommand[i]=='+'){
-                _parsedCommand.action='+';
+                _parsedCommand.action=_parsedCommand.ADDITION;
                 _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(0,i));
                 _parsedCommand.operand[1]=_SetVariable(tempCommand.substr(i+1));
 			}
             else if(tempCommand[i]=='-'){
-                _parsedCommand.action='-';
+                _parsedCommand.action=_parsedCommand.SUBTRACTION;
                 _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(0,i));
                 _parsedCommand.operand[1]=_SetVariable(tempCommand.substr(i+1));
 			}
             else if(i==tempCommand.length()){
-                _parsedCommand.action='=';
+                _parsedCommand.action=_parsedCommand.SET;
                 _parsedCommand.operand[0]=_SetVariable(tempCommand);
 			}
 		}
 	}
     else{
-        _parsedCommand.action=tempCommand.substr(0,i);
+//        _parsedCommand.action=tempCommand.substr(0,i);
+        if(tempCommand.substr(0,i)=="transpose")
+            _parsedCommand.action=_parsedCommand.TRANSPOSE;
+        else if(tempCommand.substr(0,i)=="print")
+            _parsedCommand.action=_parsedCommand.PRINT;
         _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(i+1));
 	}
 }
