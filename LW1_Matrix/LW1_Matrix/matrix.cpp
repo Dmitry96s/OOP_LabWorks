@@ -25,7 +25,7 @@ Matrix::Matrix(const Matrix &matrix)
     }
 }
 
-Matrix::Matrix(const int width, const int hight)
+Matrix::Matrix(const int hight, const int width)
     :_matrixWidth(width), _matrixHight(hight)
 {
     _NewMatrix();
@@ -88,10 +88,10 @@ void Matrix::Print() const{
     }
 }
 
-void Matrix::Recreate(const int width, const int hight) {
+void Matrix::Recreate(const int hight, const int width) {
     _DeleteMatrix();
-    _matrixWidth = width;
     _matrixHight = hight;
+    _matrixWidth = width;
     _NewMatrix();
 }
 

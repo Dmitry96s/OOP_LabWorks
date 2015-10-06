@@ -17,7 +17,7 @@ CommandExecutor::CommandExecutor()
 }
 
 CommandExecutor::CommandExecutor(const char *fileName)
-	: _file(fileName), _varCount(0)
+    : _file(fileName), _varCount(0)
 {
 }
 
@@ -34,8 +34,8 @@ void CommandExecutor::ExecScript(){
 
 void CommandExecutor::OpenFile(const char *fileName){
     if(!_file)
-		_file.close();
-	_file.open(fileName);
+        _file.close();
+    _file.open(fileName);
 }
 
 CommandExecutor::~CommandExecutor(){
@@ -126,65 +126,66 @@ void CommandExecutor::_ExecCommand(){
 void CommandExecutor::_ParseCommand(){
 //    if(_command[0]=='/' && _command[1]=='/'){
 //        _parsedCommand.action="//";
-//		return;
-//	}
-	string tempCommand(_command);
+//        return;
+//    }
+    string tempCommand(_command);
     int i, j;
     for(i=0; tempCommand[i] != ' ' && tempCommand[i] != '=' && i<tempCommand.length(); i++){
         
-	}
+    }
     if(tempCommand[i]=='='){
         _parsedCommand.result=_SetVariable(tempCommand.substr(0,i));
         tempCommand=tempCommand.substr(i+1);
         if(tempCommand[0]=='['){
-			int width, hight;
-			stringstream commandStream;
-			hight = -1;
-			for (i = 0; i < tempCommand.length(); i++) {
-				if (tempCommand[i] == '[') {
-					hight++;
-					if (hight == 1) {
-						width = 1;
-						for (i; tempCommand[i] != ']'; i++) {
-							if (tempCommand[i] == ' ')
-								width++;
-						}
-					}
+            int width, hight;
+            stringstream commandStream;
+            hight = -1;
+            for (i = 0; i < tempCommand.length(); i++) {
+                if (tempCommand[i] == '[') {
+                    hight++;
+                    if (hight == 1) {
+                        width = 1;
+                        for (i; tempCommand[i] != ']'; i++) {
+                            if (tempCommand[i] == ' ')
+                                width++;
+                        }
+                    }
                 }
             }
-            _parsedCommand.result->value.Recreate(width,hight);
+            _parsedCommand.result->value.Recreate(hight,width);
             for(i=0; i<tempCommand.length(); i++){
                 if(tempCommand[i]=='[' || tempCommand[i]==']')
                     tempCommand[i]=' ';
             }
-			commandStream << tempCommand;
+            commandStream << tempCommand;
             for(i=0; i<hight; i++){
                 for(j=0; j<width; j++){
-					commandStream >> _parsedCommand.result->value[i][j];
-					cout << _parsedCommand.result->value[i][j] << endl;
-		        }
+                    commandStream >> _parsedCommand.result->value[i][j];
+                    cout << _parsedCommand.result->value[i][j] << endl;
+                }
             }
+//            cout << _parsedCommand.result->value[4][1] << endl;
         }
         else{
             for(i=0; tempCommand[i]!='+' && tempCommand[i]!='-' && i<tempCommand.length(); i++){
                 
-			}
+            }
             if(tempCommand[i]=='+'){
                 _parsedCommand.action=_parsedCommand.ADDITION;
                 _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(0,i));
                 _parsedCommand.operand[1]=_SetVariable(tempCommand.substr(i+1));
-			}
+            }
             else if(tempCommand[i]=='-'){
                 _parsedCommand.action=_parsedCommand.SUBTRACTION;
                 _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(0,i));
                 _parsedCommand.operand[1]=_SetVariable(tempCommand.substr(i+1));
-			}
+            }
             else if(i==tempCommand.length()){
                 _parsedCommand.action=_parsedCommand.SET;
                 _parsedCommand.operand[0]=_SetVariable(tempCommand);
-			}
-		}
-	}
+            }
+        }
+    }
     else{
 //        _parsedCommand.action=tempCommand.substr(0,i);
         if(tempCommand.substr(0,i)=="transpose")
@@ -192,7 +193,7 @@ void CommandExecutor::_ParseCommand(){
         else if(tempCommand.substr(0,i)=="print")
             _parsedCommand.action=_parsedCommand.PRINT;
         _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(i+1));
-	}
+    }
 }
 
 void CommandExecutor::_ReadCommand(){

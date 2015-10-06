@@ -4,7 +4,7 @@ class Matrix {
 public:
 	Matrix();
 	Matrix(const Matrix &matrix);
-	Matrix(const int width, const int hight);
+	Matrix(const int hight, const int width);
 	double *operator[](int y);
     Matrix &operator=(const Matrix &matrix);
     Matrix operator-(const Matrix &matrix) const;
@@ -12,7 +12,7 @@ public:
     int GetHight() const;
     int GetWidth() const;
     void Print() const;
-	void Recreate(const int width, const int hight);
+	void Recreate(const int hight, const int width);
 	void Transpose();
 	~Matrix();
 private:
