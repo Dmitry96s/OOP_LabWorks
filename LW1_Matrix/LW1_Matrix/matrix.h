@@ -15,7 +15,7 @@ public:
 	void Recreate(const int hight, const int width);
 	void Transpose();
 	~Matrix();
-private:
+//private:
 	int _matrixWidth;
 	int _matrixHight;
 	double **_table;

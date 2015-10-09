@@ -88,19 +88,19 @@ void CommandExecutor::_ExecCommand(){
         &operand2=_parsedCommand.operand[1]->value;
 //    cout << _parsedCommand.operand[0]->value[0][0] << endl;
     switch(action){
-    case _parsedCommand.SET:
+	case Command::SET:
         result=operand1;
     break;
-    case _parsedCommand.ADDITION:
+    case  Command::ADDITION:
         result=operand1+operand2;
     break;
-    case _parsedCommand.SUBTRACTION:
+    case  Command::SUBTRACTION:
         result=operand1-operand2;
     break;
-    case _parsedCommand.TRANSPOSE:
+    case  Command::TRANSPOSE:
         operand1.Transpose();
     break;
-    case _parsedCommand.PRINT:
+    case  Command::PRINT:
         _COLOR_;
         cout << _parsedCommand.operand[0]->name << endl;
         _DEF_COLOR_;
@@ -171,17 +171,17 @@ void CommandExecutor::_ParseCommand(){
                 
             }
             if(tempCommand[i]=='+'){
-                _parsedCommand.action=_parsedCommand.ADDITION;
+                _parsedCommand.action= Command::ADDITION;
                 _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(0,i));
                 _parsedCommand.operand[1]=_SetVariable(tempCommand.substr(i+1));
             }
             else if(tempCommand[i]=='-'){
-                _parsedCommand.action=_parsedCommand.SUBTRACTION;
+                _parsedCommand.action= Command::SUBTRACTION;
                 _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(0,i));
                 _parsedCommand.operand[1]=_SetVariable(tempCommand.substr(i+1));
             }
             else if(i==tempCommand.length()){
-                _parsedCommand.action=_parsedCommand.SET;
+                _parsedCommand.action= Command::SET;
                 _parsedCommand.operand[0]=_SetVariable(tempCommand);
             }
         }
@@ -189,9 +189,9 @@ void CommandExecutor::_ParseCommand(){
     else{
 //        _parsedCommand.action=tempCommand.substr(0,i);
         if(tempCommand.substr(0,i)=="transpose")
-            _parsedCommand.action=_parsedCommand.TRANSPOSE;
+            _parsedCommand.action= Command::TRANSPOSE;
         else if(tempCommand.substr(0,i)=="print")
-            _parsedCommand.action=_parsedCommand.PRINT;
+            _parsedCommand.action= Command::PRINT;
         _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(i+1));
     }
 }
