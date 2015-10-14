@@ -11,7 +11,7 @@ struct Command{
     Variable *operand[2];
     Variable *result;
     int action;
-    enum {SET, ADDITION, SUBTRACTION, TRANSPOSE, PRINT};
+    enum {SET=0, ADDITION=1, SUBTRACTION=2, TRANSPOSE=3, PRINT=4};
 };
 
 class CommandExecutor {
@@ -25,7 +25,7 @@ private:
     Command _parsedCommand;
     std::ifstream _file;
     std::string _command;
-    unsigned int _varCount;
+    int _varCount;
     Variable *_var;
 
     int _WhereIsVar(const std::string &name) const;

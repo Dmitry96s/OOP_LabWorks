@@ -86,7 +86,8 @@ void CommandExecutor::_ExecCommand(){
         &result=_parsedCommand.result->value,
         &operand1=_parsedCommand.operand[0]->value,
         &operand2=_parsedCommand.operand[1]->value;
-//    cout << _parsedCommand.operand[0]->value[0][0] << endl;
+
+    cout << &_parsedCommand.result->value << endl;
     switch(action){
 	case Command::SET:
         result=operand1;
@@ -137,13 +138,13 @@ void CommandExecutor::_ParseCommand(){
         _parsedCommand.result=_SetVariable(tempCommand.substr(0,i));
         tempCommand=tempCommand.substr(i+1);
         if(tempCommand[0]=='['){
-            int width, hight;
+            int width, height;
             stringstream commandStream;
-            hight = -1;
+            height = -1;
             for (i = 0; i < tempCommand.length(); i++) {
                 if (tempCommand[i] == '[') {
-                    hight++;
-                    if (hight == 1) {
+                    height++;
+                    if (height == 1) {
                         width = 1;
                         for (i; tempCommand[i] != ']'; i++) {
                             if (tempCommand[i] == ' ')
@@ -152,16 +153,17 @@ void CommandExecutor::_ParseCommand(){
                     }
                 }
             }
-            _parsedCommand.result->value.Recreate(hight,width);
+
+            _parsedCommand.result->value.Recreate(height,width);
             for(i=0; i<tempCommand.length(); i++){
                 if(tempCommand[i]=='[' || tempCommand[i]==']')
                     tempCommand[i]=' ';
             }
             commandStream << tempCommand;
-            for(i=0; i<hight; i++){
+            for(i=0; i<height; i++){
                 for(j=0; j<width; j++){
                     commandStream >> _parsedCommand.result->value[i][j];
-                    cout << _parsedCommand.result->value[i][j] << endl;
+                    cout << _parsedCommand.result->value[i][j] << '\t' << &_parsedCommand.result->value << endl;
                 }
             }
 //            cout << _parsedCommand.result->value[4][1] << endl;
@@ -194,6 +196,9 @@ void CommandExecutor::_ParseCommand(){
             _parsedCommand.action= Command::PRINT;
         _parsedCommand.operand[0]=_SetVariable(tempCommand.substr(i+1));
     }
+	cout << _parsedCommand.result->value[4][1] << endl;
+	cout;
+
 }
 
 void CommandExecutor::_ReadCommand(){
